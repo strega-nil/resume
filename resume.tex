@@ -1,0 +1,269 @@
+\documentclass[11pt]{article}
+
+% ================ PACKAGES ====================
+
+\usepackage[reset, a4paper, margin=6mm, top=7mm, right=4mm]{geometry}
+% text alignment
+\usepackage{ragged2e}
+% loremipsum
+\usepackage{lipsum}
+% text color
+\usepackage{color}
+\usepackage{xcolor}
+% underline
+\usepackage{ulem}
+\usepackage{contour}
+% multiple columns
+\usepackage{paracol}
+% custom fonts
+\usepackage{fontspec}
+% paper bg
+\usepackage{eso-pic}
+% icons
+\usepackage{fontawesome5}
+% hyperlinks
+\usepackage{hyperref}
+% better itemize
+\usepackage{enumitem}
+
+% ================ SETTINGS ====================
+
+\setlist[itemize]{noitemsep, topsep=-2pt, leftmargin=2ex}
+
+\setromanfont{Georgia}
+\setsansfont{Optima}
+\setmonofont{Comic Code Ligatures}[Scale=0.8]
+\renewcommand{\familydefault}{\rmdefault}
+
+% no page numbers and the sorts
+\thispagestyle{empty}
+% no indentation at beginning of paragraph
+\parindent=0pt
+% for underline
+\renewcommand{\ULdepth}{3pt}
+\renewcommand{\ULthickness}{0.5pt}
+\contourlength{2.0pt}
+
+% for links
+\hypersetup{
+  colorlinks=false,
+  urlbordercolor=red,
+  pdfborderstyle={/S/U/W 1}
+}
+
+% no hyphenation
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
+% ================ MACROS ======================
+
+\newfontfamily\titlethin{Georgia-Regular}
+\newfontfamily\titlethick{Georgia-Bold}
+\newfontfamily\titlebold{Georgia-Bold}
+\newfontfamily\normaltext{Optima}
+
+\newcommand{\resumetitle}[3]{
+  \AddToShipoutPictureBG{
+    \AtPageUpperLeft {
+    \raisebox{-0.09\paperheight}{
+      \color{black!85}\rule{2\paperwidth}{\paperheight}}
+    }}
+  \begin{Center}
+    \begingroup
+    \titlethin
+    \color{black!10}\Huge{#1}
+    \titlethick
+    \color{black!5}\Huge{#2} \\
+    \vspace{2mm}
+    \textrm{\color{black!15}\Large{#3}}
+    \endgroup
+  \end{Center}
+  \vspace{7mm}
+}
+
+\newcommand{\betteruline}[1]{
+  \uline{#1}
+}
+
+\newcommand{\sectiontitle}[1]{
+  \begingroup
+    \titlebold
+    \betteruline{\Large\uppercase{#1}  }
+    \vspace{1.7mm}
+  \endgroup
+}
+
+\newcommand{\sectioncontent}[1]{
+  \begingroup
+    \begin{FlushLeft}
+    \vspace{-3mm}
+    \sffamily\small#1
+    \end{FlushLeft}
+  \endgroup
+  \vspace{2mm}
+}
+
+\newcommand{\job}[3]{
+  \begingroup
+    \textbf{\small#1} - \small#2
+    \hfill\color{black!70}\small{#3}
+  \endgroup
+}
+
+\newcommand{\project}[2]{
+  \begingroup
+    \textbf{\small#1}
+    \hfill\color{black!70}\small{#2}
+  \endgroup
+}
+
+\newcommand{\spacevv}{
+  \vspace{2mm}
+}
+
+\newcommand{\honor}[2]{
+  \textcolor{black!70}{#1} - #2 \\
+  \vspace{1.5mm}
+}
+
+\begin{document}
+
+\resumetitle{Nicole}{Mazzuca} {
+  mazzucan@outlook.com |
+  (425) 443-3734
+}
+
+\columnratio{0.31}
+\setlength{\columnsep}{7mm}
+\begin{paracol}{2}
+
+\sectiontitle{about me}
+\sectioncontent{
+  I am a software engineer who has long been fascinated by developer tooling and programming languages.
+  I had an early start in the Rust community, then switched over to C++ around six years ago.
+  I absolutely love developer tooling for its customer-facing nature,
+  and for the difference one can make in a customer's every-day experience.
+}
+
+\sectiontitle{education}
+\sectioncontent{
+  \textbf{M.Sc. in Mathematics} \\
+  Western Washington University \\
+  \textcolor{black!70}{January 2018 - December 2019} \\
+}
+
+\sectiontitle{links}
+\sectioncontent{
+  \faIcon{github-alt}\hspace{2mm}
+  \href{https://github.com/strega-nil}{@strega-nil} \\
+  \faIcon{linkedin-in}\hspace{2.1mm}
+  \href{https://www.linkedin.com/in/nicole-mazzuca-18291472/}{Nicole Mazzuca} \\
+  \faIcon{mastodon}\hspace{2mm}
+  \href{https://mstdn.social/@streganil}{@streganil} \\
+}
+
+\sectiontitle{skills}
+\sectioncontent{
+  Expert in Modern C++ \\
+  Experienced in Rust \\
+  Experienced in CMake \\
+  Competent in OCaml \\
+  Competent in Idris \\
+  Competent in JavaScript \\
+  Competent in Python
+}
+
+\switchcolumn
+
+\sectiontitle{experience}
+\sectioncontent{
+
+\job{Microsoft -- Visual C++ Libraries}{Software Engineer}{May 2022 -}
+\begin{itemize}
+  \item Maintainer of the Microsoft Visual C++ Standard Library
+  \begin{itemize}
+    \item Code reviewed pull requests from open source contributors and colleagues
+    \item Implemented C++ standard papers --
+    \href{https://wg21.link/p2494r2}{P2494R2},
+    \href{https://wg21.link/p2408r5}{P2408R5},
+    \href{https://wg21.link/p2517r1}{P2517R1},
+    and \href{https://wg21.link/p2520r0}{P2520R0}
+    \item Supported the Windows internal C++ toolset updates
+    \item Created a process for community members to add subtitles to our \href{https://github.com/microsoft/STL/wiki/Code-Review-Videos}{Video~Code~Reviews}
+  \end{itemize}
+  \item Address Sanitizer libraries implementor
+  \begin{itemize}
+    \item Communicated with internal teams to discover issues and necessary features
+    \item Lead Standard Library/Address Sanitizer compatibility efforts -- especially \texttt{std::string} ASan integration
+  \end{itemize}
+\end{itemize}
+\spacevv
+
+\job{Microsoft -- vcpkg}{Software Engineer}{January 2020 - May 2022}
+\begin{itemize}
+  \item Designed and implemented multiple features which were blockers for enterprise customers and Visual Studio integration
+  \begin{itemize}
+    \item Registries
+    \item Manifests
+    \item Localization
+  \end{itemize}
+  \item Lead efforts to open lines of communication with community members
+  \begin{itemize}
+    \item Added a \#include <C++> channel for vcpkg
+    \item Worked to create an agreement for timely PR review
+    \item Created the vcpkg RFC process
+  \end{itemize}
+  \item Lead the macOS pull request testing infrastructure efforts
+  \item Code reviewed pull requests from open source contributors and colleagues
+\end{itemize}
+\spacevv
+
+\job{Microsoft -- vcpkg}{Software Engineering Intern}{July 2019 - August 2019}
+\begin{itemize}
+  \item Rewrote parts of the filesystem layer
+  \item Rewrote the tests to be cross-platform using \href{https://github.com/catchorg/Catch2}{Catch2}
+  \item Added benchmarks to the tool
+  \item Added hashing code to avoid calling out to platform-specific tools -- Sha1, Sha256, and Sha512
+\end{itemize}
+
+}
+
+\sectiontitle{significant projects}
+\sectioncontent{
+
+\project{\href{https://includecpp.org}{\#include <C++>}}{2018 -}
+\begin{itemize}
+  \item Founding member of, and moderator for, the \#include <C++> community -- the largest chatroom for C++ developers.
+  \item We have a long-standing commitment for inclusion and diversity in the C++ community.
+  \item Additionally, as part of my time in vcpkg, we opened an official vcpkg channel in the \#include <C++> discord.
+\end{itemize}
+\spacevv
+
+\project{\href{https://learn.microsoft.com/en-us/vcpkg/users/manifests}{vcpkg Manifests}}{May - September 2020}
+\begin{itemize}
+  \item I lead the charge on designing and implementing the manifests feature from its initial RFC to completion.
+  \item Completely changed how users interact with vcpkg,
+  while still supporting strict backwards compatibility with existing usecases
+  \item The necessary first step towards bringing the C++ package management experience in line with other languages,
+  with both package versioning and user-local installation fully depending on manifests.
+\end{itemize}
+\spacevv
+    
+\project{\href{https://learn.microsoft.com/en-us/vcpkg/users/registries}{vcpkg Registries}}{September 2020 - March 2021}
+\begin{itemize}
+  \item Another major feature, necessary for enterprise customers, closed source libraries, and package versioning.
+  \item Again, lead the charge on designing and implementing.
+  \item Well-loved by the community:
+  ``[about registries] Isn't that beautiful. With Conan I couldn't come up with a working setup for this,
+  and with vcpkg it just works with a minimal effort.'' (from \href{https://decovar.dev/blog/2022/10/30/cpp-dependencies-with-vcpkg/}{this blog post})
+\end{itemize}
+\spacevv
+}
+
+\normaltext \hfill \tiny Last updated \today
+
+\end{paracol}
+
+\end{document}

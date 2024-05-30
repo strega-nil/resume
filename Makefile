@@ -1,7 +1,21 @@
 LATEXCC := xelatex
+PDFS := bike.pdf coffee.pdf tech.pdf
 
-.PHONY: all
-all: resume.pdf
+PANDOCC := pandoc --pdf-engine=xelatex
 
-%.pdf: %.tex
-	$(LATEXCC) $<
+.PHONY: all clean
+all: $(PDFS)
+
+out/%.pdf: %.tex common.tex
+	@mkdir -p out
+	$(LATEXCC) -output-directory out $<
+
+out/%.pdf: %.md
+	@mkdir -p out
+	$(PANDOCC) $< -o $@
+
+%.pdf: out/%.pdf
+	cp $< $@
+
+clean:
+	rm -rf out $(PDFS)
